@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mensajes</title>
+  <link rel="stylesheet" href="stylemensajes.css">
+</head>
+<body>
+  <div class="main">
+    <img src="/img/700b8567aba1a4fef411f32b45d2bd07f27ef71e (1).png" alt="Kaffa Café" class="logo">
+    <h1>MENSAJES</h1>
+
+    <div class="chat-box">
+      <div class="mensaje recibido">
+        <p><strong>Administrador:</strong> Recuerda revisar los pedidos pendientes.</p>
+        <span class="hora">10:32 a.m.</span>
+      </div>
+
+      <div class="mensaje enviado">
+        <p><strong>Tú:</strong> Entendido, ya estoy revisando la caja.</p>
+        <span class="hora">10:35 a.m.</span>
+      </div>
+
+      <div class="mensaje recibido">
+        <p><strong>Administrador:</strong> Gracias,</p>
+        <span class="hora">10:36 a.m.</span>
+      </div>
+    </div>
+
+    <div class="enviar-mensaje">
+      <input type="text" id="mensajeInput" placeholder="Escribe un mensaje...">
+      <button class="btn" onclick="enviarMensaje()">Enviar</button>
+    </div>
+
+    <a href="pagina.html" class="link">Volver al panel</a>
+  </div>
+
+  <script>
+    function enviarMensaje() {
+      const input = document.getElementById("mensajeInput");
+      const texto = input.value.trim();
+      if (texto === "") return;
+
+      const chatBox = document.querySelector(".chat-box");
+      const nuevoMensaje = document.createElement("div");
+      nuevoMensaje.classList.add("mensaje", "enviado");
+      nuevoMensaje.innerHTML = `<p><strong>Tú:</strong> ${texto}</p><span class="hora">${new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})}</span>`;
+      chatBox.appendChild(nuevoMensaje);
+
+      input.value = "";
+      chatBox.scrollTop = chatBox.scrollHeight;
+    }
+  </script>
+</body>
+</html>

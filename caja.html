@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Caja</title>
+  <link rel="stylesheet" href="stylecaja.css">
+</head>
+<body>
+  <div class="main">
+    <img src="/img/700b8567aba1a4fef411f32b45d2bd07f27ef71e (1).png" alt="Kaffa Café" class="logo">
+    <h1>CAJA</h1>
+
+    <div class="info">
+      <p><strong>Cajero:</strong>Nombre</p>
+      <p id="fechaHora"></p>
+    </div>
+
+    <div class="input-box">
+      <label for="documento">Documento cliente:</label>
+      <input type="text" id="documento" placeholder="Documento">
+    </div>
+
+    <div class="botones">
+      <button class="btn">RÁPIDO 1<br>Tomar pedido</button>
+      <button class="btn">RÁPIDO 2<br>Tomar pedido</button>
+      <button class="btn">RÁPIDO 3<br>Tomar pedido</button>
+
+      <button class="btn">MESA 1<br>Tomar pedido</button>
+      <button class="btn">MESA 2<br>Tomar pedido</button>
+      <button class="btn">MESA 3<br>Tomar pedido</button>
+
+      <button class="btn">MESA 4<br>Tomar pedido</button>
+      <button class="btn">MESA 5<br>Tomar pedido</button>
+      <button class="btn">MESA 6<br>Tomar pedido</button>
+    </div>
+
+    <button class="btn especial">LIBRO DIARIO</button>
+
+    <div class="acciones">
+      <button class="btn pequeno">ELABORAR</button>
+      <button class="btn pequeno">ENTREGAR</button>
+    </div>
+
+    <a href="pagina.html" class="link">Volver al panel</a>
+  </div>
+
+  <script>
+    function mostrarFechaHora() {
+      const fecha = new Date();
+      document.getElementById("fechaHora").innerText =
+        "Fecha y hora: " + fecha.toLocaleString();
+    }
+    mostrarFechaHora();
+    setInterval(mostrarFechaHora, 1000);
+  </script>
+</body>
+</html>
+

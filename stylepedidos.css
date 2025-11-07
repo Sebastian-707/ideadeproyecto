@@ -1,0 +1,111 @@
+body {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #3b1f14;
+  font-family: Arial, sans-serif;
+}
+
+.main {
+  background-color: #4e2a1c;
+  padding: 30px;
+  border-radius: 15px;
+  text-align: center;
+  width: 80%;
+  max-width: 900px;
+  color: #fff3e0;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+.logo {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 26px;
+  margin-bottom: 25px;
+  color: #f5e0c5;
+}
+
+.pedidos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 20px;
+}
+
+.pedido {
+  background-color: #7b4a2b;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: left;
+  box-shadow: 0 0 8px rgba(0, 0, 0, 0.4);
+}
+
+.pedido h3 {
+  color: #f0d6b0;
+  font-size: 18px;
+  margin-bottom: 8px;
+}
+
+.pedido p {
+  font-size: 15px;
+  color: #fff3e0;
+  margin-bottom: 12px;
+}
+
+.acciones {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn {
+  flex: 1;
+  margin: 0 3px;
+  background-color: #9a5d33;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 8px;
+  font-size: 14px;
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+.btn:hover {
+  background-color: #b87045;
+}
+
+.entregar {
+  background-color: #4CAF50;
+}
+
+.entregar:hover {
+  background-color: #5ed35e;
+}
+
+.cancelar {
+  background-color: #d9534f;
+}
+
+.cancelar:hover {
+  background-color: #f17a76;
+}
+
+.link {
+  display: inline-block;
+  margin-top: 25px;
+  color: #f0d6b0;
+  text-decoration: none;
+  font-size: 15px;
+}
+
+.link:hover {
+  color: #ffd9a0;
+  text-decoration: underline;
+}
