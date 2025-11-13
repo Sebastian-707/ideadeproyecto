@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Pago</title>
+  <link rel="stylesheet" href="stylepago.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="/img/95e9ccbcba72be0aea40a58f44bcd80c00aa2ffb.jpg" alt="Logo Kaffa Café" class="logo">
+      <h1>Confirmar Pago</h1>
+      <p>Kaffa Café</p>
+    </header>
+
+    <main>
+      <section class="pedido">
+        <h2>Pedido</h2>
+        <input type="number" id="cantidad" value="1" min="1">
+
+        <label for="descuento">Descuento:</label>
+        <input type="number" id="descuento" value="0" min="0">
+
+        <p class="total">Total: <span id="total">$0</span></p>
+        <button class="btn" id="eliminarBtn">Eliminar unidades</button>
+      </section>
+
+      <section class="pago">
+        <h2>Método de Pago</h2>
+
+        <label for="metodo">Seleccionar método:</label>
+        <select id="metodo">
+          <option value="">Seleccione...</option>
+          <option value="efectivo">Efectivo</option>
+          <option value="datafono">Datáfono</option>
+          <option value="transferencia">Transferencia</option>
+        </select>
+
+        <div id="opcionesTransferencia" class="transferencias oculto">
+          <label for="app">Seleccionar aplicación:</label>
+          <select id="app">
+            <option value="">Seleccionar...</option>
+            <option value="nequi">Nequi</option>
+            <option value="daviplata">Daviplata</option>
+            <option value="bancolombia">Bancolombia</option>
+          </select>
+
+          <div id="infoApp" class="infoApp oculto">
+            <p><strong>Número / QR:</strong> <span id="datoApp"></span></p>
+          </div>
+        </div>
+
+        <input type="text" class="observacion" id="observacion" placeholder="Observaciones...">
+
+        <div class="botones">
+          <button class="btn pequeño" id="tiquetBtn">Tiquet</button>
+          <button class="btn pequeño" id="posponerBtn">Posponer</button>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      <a href="caja.html" class="volver">Volver a la Caja</a>
+    </footer>
+  </div>
+
+  <script>
+    const cantidad = document.getElementById("cantidad");
+    const descuento = document.getElementById("descuento");
+    const total = document.getElementById("total");
+    const precio = 9000;
+
+    function actualizarTotal() {
+      const c = parseInt(cantidad.value) || 0;
+      const d = parseInt(descuento.value) || 0;
+      const resultado = c * precio - d;
+      total.textContent = `$${resultado.toLocaleString("es-CO")}`;
+    }
+
+    cantidad.addEventListener("input", actualizarTotal);
+    descuento.addEventListener("input", actualizarTotal);
+    actualizarTotal();
+
+    document.getElementById("eliminarBtn").addEventListener("click", () => {
+      if (cantidad.value > 1) {
+        cantidad.value--;
+        actualizarTotal();
+      } else {
+        alert("Debe haber al menos una unidad en el pedido.");
+      }
+    });
+
+    const metodo = document.getElementById("metodo");
+    const opcionesTransferencia = document.getElementById("opcionesTransferencia");
+    const app = document.getElementById("app");
+    const infoApp = document.getElementById("infoApp");
+    const datoApp = document.getElementById("datoApp");
+
+    metodo.addEventListener("change", () => {
+      if (metodo.value === "transferencia") {
+        opcionesTransferencia.classList.remove("oculto");
+      } else {
+        opcionesTransferencia.classList.add("oculto");
+        infoApp.classList.add("oculto");
+      }
+    });
+
+    const datos = {
+      nequi: "Nequi: 301 000 0000",
+      daviplata: "Daviplata: 320 000 0000",
+      bancolombia: "Cuenta Ahorros: 123-456-789",
+    };
+
+    app.addEventListener("change", () => {
+      if (app.value) {
+        datoApp.textContent = datos[app.value];
+        infoApp.classList.remove("oculto");
+      } else {
+        infoApp.classList.add("oculto");
+      }
+    });
+
+    document.getElementById("tiquetBtn").addEventListener("click", () => {
+      const pedido = {
+        cantidad: cantidad.value,
+        total: total.textContent,
+        metodo: metodo.value || "no seleccionado",
+        observacion: document.getElementById("observacion").value
+      };
+      localStorage.setItem("comprobante", JSON.stringify(pedido));
+      window.location.href = "comprobante.html";
+    });
+
+    document.getElementById("posponerBtn").addEventListener("click", () => {
+      const pedido = {
+        cantidad: cantidad.value,
+        total: total.textContent,
+        metodo: metodo.value || "pendiente",
+        observacion: document.getElementById("observacion").value
+      };
+      localStorage.setItem("pedidoPendiente", JSON.stringify(pedido));
+      alert("🕒 Pedido pospuesto correctamente. Se mostrará en la caja.");
+      window.location.href = "caja.html";
+    });
+  </script>
+</body>
+</html>
+
+
+
+
+

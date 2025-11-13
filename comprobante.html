@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Comprobante</title>
+  <link rel="stylesheet" href="stylecomprobante.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <img src="/img/95e9ccbcba72be0aea40a58f44bcd80c00aa2ffb.jpg" alt="Logo Kaffa Café" class="logo">
+      <h1>Comprobante de Pago</h1>
+      <p>Kaffa Café</p>
+    </header>
+
+    <main>
+      <section class="pedido">
+        <h2>Detalles del Pedido</h2>
+        <p><strong>Cantidad:</strong> <span id="cantidad"></span></p>
+        <p><strong>Total:</strong> <span id="total"></span></p>
+        <p><strong>Método:</strong> <span id="metodo"></span></p>
+        <p><strong>Observación:</strong> <span id="observacion"></span></p>
+      </section>
+
+      <a href="caja.html" class="btn">Volver a la Caja</a>
+    </main>
+  </div>
+
+  <script>
+    const datos = JSON.parse(localStorage.getItem("comprobante"));
+    if (datos) {
+      document.getElementById("cantidad").textContent = datos.cantidad;
+      document.getElementById("total").textContent = datos.total;
+      document.getElementById("metodo").textContent = datos.metodo;
+      document.getElementById("observacion").textContent = datos.observacion || "Sin observaciones";
+    } else {
+      document.body.innerHTML = "<h2 style='text-align:center'>No hay comprobante disponible.</h2>";
+    }
+  </script>
+</body>
+</html>
